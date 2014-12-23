@@ -1,25 +1,39 @@
+/* jshint node: true */
+/* jshint jquery: true */
+/* jshint sub: true */
+/* global window,document, $,alert,history */
+
+var _ = require('lodash');
+var __ = require('lazy.js');
+var ___ = require('./spacetimeline');
 
 var moment = require('moment');
 
 var timelineCapacity = moment.duration(40, 'seconds');
 
-var __a = __(timelineCapacity);
+var ___a = ___(timelineCapacity);
 
 
-var _natural = _(natural);
-var it = _natural.it();
+var naturalF = function(n)
+{
+  return n;
+};
+
+var __Natural = __.generate(naturalF);
+
+console.log(__Natural.take(10));
 
 
 var interval = setInterval(function()
 {
-  __a.appear(it.next());
+  ___a.appear(it.next());
 
 }, 1000);
 
-__a.compute(function()
+___a.compute(function()
 {
   // log('x ' + x);
-  log(__a.value(__('NOW')));
+  log(___a.value(__('NOW')));
 
-  log(__a.value(__('NOW').subtract(2, 'seconds')));
+  log(___a.value(__('NOW').subtract(2, 'seconds')));
 });

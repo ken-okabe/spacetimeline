@@ -25,6 +25,7 @@
   "homepage": "https://github.com/kenokabe/spacetimeline",
   "dependencies":
   {
+    "clone": "",
     "moment": "",
     "watchjs": ""
   },

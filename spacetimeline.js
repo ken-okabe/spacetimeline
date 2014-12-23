@@ -28,7 +28,7 @@ var moment = require('moment');
 
 var spacetimeline = function()
 {
-  log('=== spacetime-timeline initialization ===');
+  log('=== spacetimeline initialization ===');
 
   var objTemplate = {};
 
@@ -39,30 +39,22 @@ var spacetimeline = function()
   if (typeof window === 'undefined')
   {
     log('loading node-mode');
-    var functionsDir = require('fs')
-      .readdirSync(__dirname);
 
-    functionsDir
-      .map(function(dirName)
-      {
-        if (dirName.indexOf('spacetime-timeline-') === 0)
-        {
+    var dir = __dirname + '/lib';
+    log(dir);
+    var files = require('fs').readdirSync(dir);
+    log(files);
 
-          log(dirName);
+    files.map(function(file)
+    {
+      var moduleName = file.split('.')[0];
+      objTemplate[moduleName] =
+        require(dir + '/' + moduleName);
 
-          var moduleName = dirName
-            .split('spacetime-timeline-')[1]
-            .split('.js')[0];
-          //  log(moduleName);
-          objTemplate[moduleName] =
-            require(__dirname + '/' + dirName + '/' + moduleName);
+      log(moduleName + ' loaded');
+    });
 
 
-          log(moduleName + ' loaded');
-
-        }
-
-      });
   }
   else
   {
