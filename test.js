@@ -27,15 +27,12 @@ console.log('----');
 //var ___a = ___(timelineCapacity);
 var ___a = ___();
 
-
+var it = __Natural.getIterator();
 
 var interval = setInterval(function()
 {
-  //  console.log(___a.value(___('NOW')));
-  //___a.appear(it.next());
-  ___a.appear('yay');
-
-
+  it.moveNext();
+  ___a.appear(it.current());
 }, 1000);
 
 

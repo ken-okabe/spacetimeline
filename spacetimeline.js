@@ -6,7 +6,7 @@
 
 var log = function(msg)
 {
-  console.log('core:', msg);
+  //  console.log('core:', msg);
 };
 
 var type = function(obj)
@@ -56,8 +56,8 @@ if (typeof window === 'undefined')
 }
 else
 {
-  log('loading timeline browserify-mode');
-  objTemplate = require('./loadModulesFactoryBrowserify')(objTemplate);
+  log('loading timeline webpack-mode');
+  //  objTemplate = require('./loadModulesFactoryBrowserify')(objTemplate);
 }
 
 
@@ -108,52 +108,52 @@ var spacetimeline = function(seq)
   {　
     return moment().utc();
   }
+  /*
+    else if (type(seq) === 'Array')
+    {
 
-  else if (type(seq) === 'Array')
-  {
 
+    }
 
-  }
+    else if (type(seq) === 'Function')
+    {
+      log('timeline custom Function, so will return timeline');
+      // return newObj.generator(seq); //exteranl function generator
 
-  else if (type(seq) === 'Function')
-  {
-    log('timeline custom Function, so will return timeline');
-    // return newObj.generator(seq); //exteranl function generator
-
-    var tlSeed = seq;
-    newObj.tl = function() //first src as a closure for lazyEval
-      {
-        log('the first tl called default');
-
-        //  log(tlSeed);
-        //--
-        var custom = function()
+      var tlSeed = seq;
+      newObj.tl = function() //first src as a closure for lazyEval
         {
-          var newTl = {
-            beacon: false,
-            next: function()
-            {
-              return (this.beacon = !this.beacon);
-            }
+          log('the first tl called default');
+
+          //  log(tlSeed);
+          //--
+          var custom = function()
+          {
+            var newTl = {
+              beacon: false,
+              next: function()
+              {
+                return (this.beacon = !this.beacon);
+              }
+            };
+
+            tlSeed(newTl);
+
+            return newTl;
           };
 
-          tlSeed(newTl);
+          //--
+          var newTl = custom();
 
           return newTl;
+
+
         };
 
-        //--
-        var newTl = custom();
-
-        return newTl;
+      return newObj;
 
 
-      };
-
-    return newObj;
-
-
-  }
+    }*/
 
 };
 
