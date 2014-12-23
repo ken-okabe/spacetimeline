@@ -1,0 +1,33 @@
+{
+  "name": "spacetimeline",
+  "version": "1.0.0",
+  "description": "SpaceTimeLine FRP",
+  "main": "spacetimeline.js",
+  "scripts":
+  {
+    "test": "node test"
+  },
+  "repository":
+  {
+    "type": "git",
+    "url": "https://github.com/kenokabe/spacetimeline"
+  },
+  "keywords": [
+    "spacetimeline",
+    "frp"
+  ],
+  "author": "Ken Okabe",
+  "license": "MIT",
+  "bugs":
+  {
+    "url": "https://github.com/kenokabe/spacetimeline/issues"
+  },
+  "homepage": "https://github.com/kenokabe/spacetimeline",
+  "dependencies":
+  {
+    "moment": "",
+    "watchjs": ""
+  },
+  "devDependencies":
+  {}
+}
