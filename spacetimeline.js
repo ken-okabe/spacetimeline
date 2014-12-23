@@ -26,141 +26,136 @@ var W = require('watchjs');
 
 var moment = require('moment');
 
-var spacetimeline = function()
+log('=== spacetimeline initialization ===');
+
+var objTemplate = {};
+
+
+log('functions loading');
+//log(functionsDir);
+
+if (typeof window === 'undefined')
 {
-  log('=== spacetimeline initialization ===');
+  log('loading node-mode');
 
-  var objTemplate = {};
+  var dir = __dirname + '/lib';
+  log(dir);
+  var files = require('fs').readdirSync(dir);
+  log(files);
 
-
-  log('functions loading');
-  //log(functionsDir);
-
-  if (typeof window === 'undefined')
+  files.map(function(file)
   {
-    log('loading node-mode');
+    var moduleName = file.split('.')[0];
+    objTemplate[moduleName] =
+      require(dir + '/' + moduleName);
 
-    var dir = __dirname + '/lib';
-    log(dir);
-    var files = require('fs').readdirSync(dir);
-    log(files);
-
-    files.map(function(file)
-    {
-      var moduleName = file.split('.')[0];
-      objTemplate[moduleName] =
-        require(dir + '/' + moduleName);
-
-      log(moduleName + ' loaded');
-    });
+    log(moduleName + ' loaded');
+  });
 
 
-  }
-  else
+}
+else
+{
+  log('loading timeline browserify-mode');
+  objTemplate = require('./loadModulesFactoryBrowserify')(objTemplate);
+}
+
+
+
+//=======================
+var spacetimeline = function(seq)
+{
+  log('======core called=======');
+  var newObj = clone(objTemplate);
+
+  newObj.W = W;
+  /*  log('--seq--');
+  log(seq);
+  log('------');*/
+  newObj.beacon = false;
+  newObj.val = null;
+
+  newObj.next = function()
   {
-    log('loading timeline browserify-mode');
-    objTemplate = require('./loadModulesFactoryBrowserify')(objTemplate);
-  }
-
-
-
-  //=======================
-  var core = function(seq)
-  {
-    log('======core called=======');
-    var newObj = clone(objTemplate);
-
-    newObj.W = W;
-    /*  log('--seq--');
-    log(seq);
-    log('------');*/
-    newObj.beacon = false;
-    newObj.val = null;
-
-    newObj.next = function()
-    {
-      return (newObj.beacon = !newObj.beacon);
-    };
-
-    if (!seq) //emply call,__()
-    {
-      newObj.type = 'null';
-
-      log('seq type is ...');
-      log(newObj.type);
-
-      newObj.timelineCapacity = null;
-      // 　　
-      return newObj;
-    }
-    else if (type(seq) === 'Object')
-    {　
-      newObj.type = 'Object';
-
-      log('seq type is ...');
-      log(newObj.type);
-
-      newObj.timelineCapacity = seq;
-      // 　　
-      return newObj;
-
-    }
-
-    else if (seq === 'NOW') //call __('NOW')
-    {　
-      return moment().utc();
-    }
-
-    else if (type(seq) === 'Array')
-    {
-
-
-    }
-
-    else if (type(seq) === 'Function')
-    {
-      log('timeline custom Function, so will return timeline');
-      // return newObj.generator(seq); //exteranl function generator
-
-      var tlSeed = seq;
-      newObj.tl = function() //first src as a closure for lazyEval
-        {
-          log('the first tl called default');
-
-          //  log(tlSeed);
-          //--
-          var custom = function()
-          {
-            var newTl = {
-              beacon: false,
-              next: function()
-              {
-                return (this.beacon = !this.beacon);
-              }
-            };
-
-            tlSeed(newTl);
-
-            return newTl;
-          };
-
-          //--
-          var newTl = custom();
-
-          return newTl;
-
-
-        };
-
-      return newObj;
-
-
-    }
-
+    return (newObj.beacon = !newObj.beacon);
   };
 
-  return core;
+  if (!seq) //emply call,__()
+  {
+    newObj.type = 'null';
+
+    log('seq type is ...');
+    log(newObj.type);
+
+    newObj.timelineCapacity = null;
+    // 　　
+    return newObj;
+  }
+  else if (type(seq) === 'Object')
+  {　
+    newObj.type = 'Object';
+
+    log('seq type is ...');
+    log(newObj.type);
+
+    newObj.timelineCapacity = seq;
+    // 　　
+    return newObj;
+
+  }
+
+  else if (seq === 'NOW') //call __('NOW')
+  {　
+    return moment().utc();
+  }
+
+  else if (type(seq) === 'Array')
+  {
+
+
+  }
+
+  else if (type(seq) === 'Function')
+  {
+    log('timeline custom Function, so will return timeline');
+    // return newObj.generator(seq); //exteranl function generator
+
+    var tlSeed = seq;
+    newObj.tl = function() //first src as a closure for lazyEval
+      {
+        log('the first tl called default');
+
+        //  log(tlSeed);
+        //--
+        var custom = function()
+        {
+          var newTl = {
+            beacon: false,
+            next: function()
+            {
+              return (this.beacon = !this.beacon);
+            }
+          };
+
+          tlSeed(newTl);
+
+          return newTl;
+        };
+
+        //--
+        var newTl = custom();
+
+        return newTl;
+
+
+      };
+
+    return newObj;
+
+
+  }
 
 };
+
 
 module.exports = spacetimeline;

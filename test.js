@@ -24,21 +24,26 @@ console.log(__natural10.toArray());
 
 var timelineCapacity = moment.duration(40, 'seconds');
 console.log('----');
-var ___a = ___(timelineCapacity);
-/*
+//var ___a = ___(timelineCapacity);
+var ___a = ___();
+
+
+
 var interval = setInterval(function()
 {
-  ___a.appear(it.next());
+  //  console.log(___a.value(___('NOW')));
+  //___a.appear(it.next());
+  ___a.appear('yay');
+
 
 }, 1000);
+
+
 
 ___a.compute(function()
 {
   // log('x ' + x);
-  log(___a.value(__('NOW')));
+  console.log(___a.value(___('NOW')));
 
-  log(___a.value(__('NOW').subtract(2, 'seconds')));
+  console.log(___a.value(___('NOW').subtract(2, 'seconds')));
 });
-
-* /
-*/
