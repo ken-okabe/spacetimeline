@@ -35,12 +35,21 @@ var interval = setInterval(function()
   ___a.appear(it.current());
 }, 1000);
 
+var ___b = ___a.map(function(x)
+{
+  return x * 2;
+});
 
 
 ___a.compute(function()
 {
-  // log('x ' + x);
-  console.log(___a.value(___('NOW')));
+  console.log('a: ' + ___a.value(___('NOW')));
+});
 
-  console.log(___a.value(___('NOW').subtract(2, 'seconds')));
+
+___b.compute(function()
+{
+  console.log('b: ' + ___b.value(___('NOW')));
+
+  //console.log(___b.value(___('NOW').subtract(2, 'seconds')));
 });
