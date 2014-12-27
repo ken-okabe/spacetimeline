@@ -67,7 +67,7 @@ As a result, you can re-play 1 seconds past world that you behaved.
   //-----------------------------------------------------------------------------------
 
   ___cursor.compute(function() {  
-    // here is the final part where binds pure logic and physical world
+    // here is the final part where pure logic meets our physical world
     // in lazy evaluation context, this corresponds to  `toArray()`
 
     //var cursor = ___cursor.value(___('NOW'));
@@ -86,8 +86,6 @@ As a result, you can re-play 1 seconds past world that you behaved.
 
     //====================================
     })();
-    ```
 
-    ----
 
-    ```
+```
