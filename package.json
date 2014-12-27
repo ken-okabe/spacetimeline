@@ -3,12 +3,10 @@
   "version": "1.0.0",
   "description": "SpaceTimeLine FRP",
   "main": "spacetimeline.js",
-  "scripts":
-  {
+  "scripts": {
     "test": "node test"
   },
-  "repository":
-  {
+  "repository": {
     "type": "git",
     "url": "https://github.com/kenokabe/spacetimeline"
   },
@@ -18,17 +16,14 @@
   ],
   "author": "Ken Okabe",
   "license": "MIT",
-  "bugs":
-  {
+  "bugs": {
     "url": "https://github.com/kenokabe/spacetimeline/issues"
   },
   "homepage": "https://github.com/kenokabe/spacetimeline",
-  "dependencies":
-  {
-    "clone": "",
+  "dependencies": {
+    "lodash": "",
     "moment": "",
     "watchjs": ""
   },
-  "devDependencies":
-  {}
+  "devDependencies": {}
 }

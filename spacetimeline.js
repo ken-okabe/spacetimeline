@@ -20,7 +20,7 @@ var type = function(obj)
 };
 
 //----------
-var clone = require('clone');
+var _ = require('lodash');
 
 var W = require('watchjs');
 
@@ -66,7 +66,7 @@ else
 var spacetimeline = function(seq)
 {
   log('======core called=======');
-  var newObj = clone(objTemplate);
+  var newObj = _.cloneDeep(objTemplate);
 
   newObj.W = W;
   /*  log('--seq--');
@@ -74,6 +74,8 @@ var spacetimeline = function(seq)
   log('------');*/
   newObj.beacon = false;
   newObj.val = null;
+
+  log(newObj);
 
   newObj.next = function()
   {
