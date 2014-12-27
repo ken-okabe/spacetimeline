@@ -56,7 +56,7 @@ if (typeof window === 'undefined')
 
 }
 */
-var dir = __dirname + '/lib';
+var dir = './lib';
 
 ['appear','compute','map','take','value']
    .map(function(moduleName)
