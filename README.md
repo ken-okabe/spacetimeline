@@ -1,19 +1,26 @@
 spacetimeline
 =============
 
-SpaceTimeLine FRP
+SpaceTimeLine A conceptual FRP model library
 
 
 https://github.com/kenokabe/spacetimeline
 
+##Install
+
 `npm install spacetimeline`
 
-Also, some [facebook/react](https://github.com/facebook/react)+spacetimeline live-demo web-page.
+##CDN
+ http://kentutorialbook.github.io/cdn/spacetimeline.js
+
+##Live Demo Webpage
+ [facebook/react](https://github.com/facebook/react)+spacetimeline live-demo web-page.
 
 http://kentutorialbook.github.io/demo/frp-redball-delay/index.html
+
 https://github.com/kentutorialbook/kentutorialbook.github.io/tree/master/demo/frp-redball-delay
 
-In this live-demo, my FRP library records all mouse-move event with a time-stamp.
+In this live-demo, the FRP library records all mouse-move event with a time-stamp.
 Or all mouse-move event in 10 seconds duration. You can limit the time-line data size.
 
 You can access the most recent event prior to any time-stamp, functionally.
