@@ -55,14 +55,13 @@ if (typeof window === 'undefined')
 
 
 }
-*/
-var dir = './lib';
+*/ 
 
 ['appear','compute','map','take','value']
    .map(function(moduleName)
     {
       objTemplate[moduleName] =
-      require(dir + '/' + moduleName);
+      require('./lib/' + moduleName);
 
       log(moduleName + ' loaded');
     });
