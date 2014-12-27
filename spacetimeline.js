@@ -34,6 +34,7 @@ var objTemplate = {};
 log('functions loading');
 //log(functionsDir);
 
+/*
 if (typeof window === 'undefined')
 {
   log('loading node-mode');
@@ -54,12 +55,17 @@ if (typeof window === 'undefined')
 
 
 }
-else
-{
-  log('loading timeline webpack-mode');
-  //  objTemplate = require('./loadModulesFactoryBrowserify')(objTemplate);
-}
+*/
+var dir = __dirname + '/lib';
 
+['appear','compute','map','take','value']
+   .map(function(moduleName)
+    {
+      objTemplate[moduleName] =
+      require(dir + '/' + moduleName);
+
+      log(moduleName + ' loaded');
+    });
 
 
 //=======================
