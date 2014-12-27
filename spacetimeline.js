@@ -55,7 +55,7 @@ if (typeof window === 'undefined')
 
 
 }
-*/ 
+*/
 
 ['appear','compute','map','take','value']
    .map(function(moduleName)
@@ -99,7 +99,7 @@ var spacetimeline = function(seq)
     return newObj;
   }
   else if (type(seq) === 'Object')
-  {　
+  {
     newObj.type = 'Object';
 
     log('seq type is ...');
@@ -112,7 +112,7 @@ var spacetimeline = function(seq)
   }
 
   else if (seq === 'NOW') //call __('NOW')
-  {　
+  {
     return moment().utc();
   }
   /*
