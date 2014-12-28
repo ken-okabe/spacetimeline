@@ -74,7 +74,7 @@ As a result, you can re-play 1 seconds past world that you behaved.
     //var cursor = ___cursor.value(moment().subtract(3, 'seconds'));
     var cursor = ___cursor.value(___('NOW').subtract(1, 'seconds'))
 
-    var dom = <svg height = "600" width = "600">
+    var dom = <svg height = "100%" width = "100%">
     <circle cx = {  cursor.x  }  cy = {  cursor.y  }  r = "20"   fill = "red" />
     </svg>;
 
