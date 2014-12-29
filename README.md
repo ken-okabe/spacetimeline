@@ -44,48 +44,51 @@ As a result, you can re-play 1 seconds past world that you behaved.
 ```js
 
 (function() {
+  
+  var timelineCapacity = moment.duration(40, 'seconds');
 
-  var timelineCapacity = moment.duration(10, 'seconds');
-  var ___cursor = ___(timelineCapacity);
+  var ___cursor = ___();
 
   var onMouseMove = function(e) {
+
     var cursor = {
       x: e.clientX,
       y: e.clientY
     };
-    ___cursor.appear(cursor); //the stream data appearing while time-line proceeding to the future
+
+    ___cursor.appear(cursor);
   };
 
-  //----------------------------------------------------------------------------------
-  //this logic is extra/option, but with this, the demo looks cooler,
-  //try to comment out, and see how it goes
+  document.addEventListener("mousemove", onMouseMove);
 
-  var interval = setInterval(function() {
-    ___cursor.appear(___cursor.value(___('NOW')));
-  }, 10);
+  // here is the final part where pure logic meets our physical world
+  // in lazy evaluation context, this corresponds to  `toArray()`
+  ___cursor.compute(function() {});
 
-  //-----------------------------------------------------------------------------------
+  var Dom1 = React.createClass({
+    getInitialState: function() {
+      return {cursor: {x:100,y:100}};
+    },
+    tick: function() {
+      this.setState({cursor: ___cursor.value(___('NOW').subtract(1, 'seconds'))});
+    },
+    componentDidMount: function() {
+      this.interval = setInterval(this.tick, 10);
+    },
+    componentWillUnmount: function() {
+      clearInterval(this.interval);
+    },
+    render: function() {
+      return ( <div> <svg height = "100%"  width = "100%" >
+      <circle cx = {  this.state.cursor.x  }  cy = {  this.state.cursor.y }  r = "20"  fill = "red" />
+      </svg></div>);
+    }
+  });
 
-  ___cursor.compute(function() {  
-    // here is the final part where pure logic meets our physical world
-    // in lazy evaluation context, this corresponds to  `toArray()`
+  React.render(<Dom1 />, document.body);
 
-    //var cursor = ___cursor.value(___('NOW'));
-    //var cursor = ___cursor.value(moment().subtract(3, 'seconds'));
-    var cursor = ___cursor.value(___('NOW').subtract(1, 'seconds'))
-
-    var dom = <svg height = "100%" width = "100%">
-    <circle cx = {  cursor.x  }  cy = {  cursor.y  }  r = "20"   fill = "red" />
-    </svg>;
-
-    React.render(dom, document.body);
-
-    });
-
-    document.addEventListener("mousemove", onMouseMove);
-
-    //====================================
-    })();
+  //====================================
+})();
 
 
 ```
