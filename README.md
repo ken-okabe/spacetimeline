@@ -21,7 +21,8 @@ http://kentutorialbook.github.io/demo/frp-redball-delay/index.html
 https://github.com/kentutorialbook/kentutorialbook.github.io/tree/master/demo/frp-redball-delay
 
 In this live-demo, the FRP library records all mouse-move event with a time-stamp.
-Or all mouse-move event in 10 seconds duration. You can limit the time-line data size.
+
+Or **all mouse-move event in 10 seconds duration**. You can limit the time-line data size by setting `___(timelineCapacity)`.
 
 You can access any stream data aligned on time-line, or to be precise,  the most recent event prior to any time-stamp, functionally.
 
@@ -44,10 +45,10 @@ As a result, you can re-play 1 seconds past world that you behaved.
 ```js
 
 (function() {
-  
-  var timelineCapacity = moment.duration(40, 'seconds');
 
-  var ___cursor = ___();
+  var timelineCapacity = moment.duration(10, 'seconds');
+
+  var ___cursor = ___(timelineCapacity);
 
   var onMouseMove = function(e) {
 
